@@ -313,22 +313,31 @@ discountPrice_ByMainCategory_boxplot(df)
 # KPIs by Hammad ------------------------------------------------------------------------------------------------------------------------
 
 counts = data.groupby(['main_category', 'sub_category'])['no_of_ratings'].count()
-max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].max()
-min_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].min()
-max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].max()
+max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
+min_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].min()
+max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
 grouped_data = data.groupby(['main_category', 'sub_category'])
 
 # define a function to get the number of ratings for the highest and lowest priced products in each group
 def get_ratings(group):
     # get the row with the highest actual price
-    max_price_row = group.loc[group['actual_price (Rs)'].idxmax()]
+    max_price_row = group.loc[group['actual_price (Rs. )'].idxmax()]
     # get the row with the lowest actual price
-    min_price_row = group.loc[group['actual_price (Rs)'].idxmin()]
+    min_price_row = group.loc[group['actual_price (Rs. )'].idxmin()]
     # return the number of ratings for both rows
     return pd.Series({'max_price_ratings': max_price_row['no_of_ratings'], 'min_price_ratings': min_price_row['no_of_ratings']})
 
+def get_minratings(group):
+    # get the row with the highest actual price
+    max_disprice_row = group.loc[group['discount_price (Rs. )'].idxmax()]
+    # get the row with the lowest actual price
+    min_disprice_row = group.loc[group['discount_price (Rs. )'].idxmin()]
+    # return the number of ratings for both rows
+    return pd.Series({'max_disprice_ratings': max_disprice_row['no_of_ratings'], 'min_disprice_ratings': min_disprice_row['no_of_ratings']})
+
 # apply the get_ratings function to each group and concatenate the resulting dataframes
 ratings_df = grouped_data.apply(get_ratings).reset_index()
+minratings_df = grouped_data.apply(get_minratings).reset_index()
 
 # Visualizations by Hassan ------------------------------------------------------------------------------------------------------------------------
 
