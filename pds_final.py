@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May  7 12:59:47 2023
-
-@author: HNS
-"""
-
-# Load Data Function by Ali
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import glob
+
+# Load Data Function by Ali
 
 def upload_files():
     folder_path = input('Enter path to the folder where the files are located: ')
@@ -318,14 +314,73 @@ discountPrice_ByMainCategory_boxplot(df)
  
 # Visualizations by Hassan ------------------------------------------------------------------------------------------------------------------------
 
+def visualizations(df):
+    actual_prices_of_main_categories = df.groupby('main_category')['actual_price (Rs. )'].sum()
+    discounted_prices_of_main_categories = df.groupby('main_category')['discount_price (Rs. )'].sum()
+    
+    actual_prices_of_sub_categories = df.groupby('sub_category')['actual_price (Rs. )'].sum()
+    discounted_prices_of_sub_categories = df.groupby('sub_category')['discount_price (Rs. )'].sum()
+        
+    
+    # Bar chart for actual price by main categories of prodcts
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(32, 16))
+    plt.subplots_adjust(bottom=0.2) # Adjust the spacing from the bottom of the page
+    
+    actual_prices_of_main_categories.plot(kind='bar', ax=ax[0])
+    ax[0].set_xticklabels(ax[0].get_xticklabels(), rotation=90) # Rotate the x-axis labels
+    ax[0].set_xlabel('Main Categories')
+    ax[0].set_ylabel('Actual Prices in Billions (PKR)')
+    ax[0].set_title('Actual Price by Category of Prodcts', fontweight='bold')
+    ax[0].set_ylim(100000, 250000000) # set y-axis limits
+    ax[0].grid(True)
+    
+    # Bar chart for discounted price by main categories of prodcts
+    discounted_prices_of_main_categories.plot(kind='bar', ax=ax[1])
+    ax[1].set_xticklabels(ax[1].get_xticklabels(), rotation=90) # Rotate the x-axis labels
+    ax[1].set_xlabel('Main Categories')
+    ax[1].set_ylabel('Discounted Prices in Billions (PKR)')
+    ax[1].set_title('Dicsounted Price by Category of Prodcts', fontweight='bold')
+    ax[1].set_ylim(100000, 250000000) # set y-axis limits
+    ax[1].grid(True)
+    
+    fig.savefig('figure1.png', dpi=150)  # Save the figure as high-resolution image
+    
+    plt.show()
+    
+    # Bar chart for actual price by sub categories of prodcts
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(40, 20))
+    plt.subplots_adjust(hspace=0.3) # Adjust the spacing between subplots
+    plt.subplots_adjust(bottom=0.2) # Adjust the spacing from the bottom of the page
+
+    
+    actual_prices_of_sub_categories.plot(kind='bar', ax=ax[0])
+    ax[0].set_xticklabels(ax[0].get_xticklabels(), rotation=90) # Rotate the x-axis labels
+    ax[0].set_xlabel('Sub Categories')
+    ax[0].set_ylabel('Actual Prices in Billions (PKR)')
+    ax[0].set_title('Actual Price by Sub-Category of Prodcts', fontweight='bold')
+    ax[0].set_ylim(100000, 250000000) # set y-axis limits
+    ax[0].grid(True)
+    
+    # Bar chart for discounted price by sub categories of prodcts
+    discounted_prices_of_sub_categories.plot(kind='bar', ax=ax[1])
+    ax[1].set_xticklabels(ax[1].get_xticklabels(), rotation=90) # Rotate the x-axis labels
+    ax[1].set_xlabel('Sub Categories')
+    ax[1].set_ylabel('Discounted Prices in Billions (PKR)')
+    ax[1].set_title('Dicsounted Price by Sub-Category of Prodcts', fontweight='bold')
+    ax[1].set_ylim(100000, 250000000) # set y-axis limits
+    ax[1].grid(True)
+    
+    fig.savefig('figure2.png', dpi=150)  # Save the figure as high-resolution image
+    plt.show()
+
+
 # Program Execution ------------------------------------------------------------------------------------------------------------------------
 
-folder_path = input("Enter Folder Path")
-df = load_data(folder_path)
+df = upload_files()
 df = clean_data(df)
 statistical_analysis(df)
 kpis(df)
-visualization(df)
+visualizations(df)
 
 print("End of Program")
 
