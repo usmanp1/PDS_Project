@@ -1,45 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
-import numpy as np
-import glob
-
-
-# In[2]:
-
-
-def load_data(data_Folder):
-    path = (data_Folder + "/*.csv")
-    all_files = glob.glob(path)
-
-    dfs = []
-    for filename in all_files:
-        df = pd.read_csv(filename, index_col=None, header=0)
-        dfs.append(df)
-
-    # Concatenate all data frames into a single data frame
-    merged = pd.concat(dfs, axis=0, ignore_index=True)
-    
-    return merged
-
-
-# In[3]:
-
-
-merged_df = load_data('C:/Users/USMAN/Desktop/KSBL/PDS/term_assignment/')
-
-
-# In[4]:
-
-
-merged_df
-
-
-# In[5]:
 
 
 def clean_data(merged_df):
@@ -92,27 +51,4 @@ def clean_data(merged_df):
     merged_df.dropna(inplace=True)
     
     return merged_df
-
-
-# In[6]:
-
-
-clean_df = clean_data(merged_df)
-
-
-# In[7]:
-
-
-clean_df
-
-
-# In[31]:
-
-
-########## YOU HAVE YOUR CLEAN DATA #################
-
-
-# In[ ]:
-
-print("testing")
 
