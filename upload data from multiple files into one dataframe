@@ -1,15 +1,22 @@
 import pandas as pd
 import glob
 
-folder_path = 'datasets'
-file_list = glob.glob(folder_path + "/*.csv")
+def upload_files():
+    folder_path = input('Enter path to the folder where the files are located: ')
+    file_list = glob.glob(folder_path + "/*.csv")
 
-data_frame = []
+    data_frames = []
 
-for filename in file_list:
-    df = pd.read_csv(filename, index_col=None, header=0)
-    data_frame.append(df)
+    for filename in file_list:
+        df = pd.read_csv(filename, index_col=None, header=0)
+        data_frames.append(df)
 
-combined_df = pd.concat(data_frame, axis=0, ignore_index=True)
+    combined_df = pd.concat(data_frames, axis=0, ignore_index=True)
+    
+    combined_df.drop_duplicates(inplace=True)
+    
+    return combined_df
+
+combined_df= upload_files()
 
 print(combined_df.head())
