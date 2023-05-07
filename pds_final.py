@@ -5,10 +5,10 @@ Created on Sun May  7 12:59:47 2023
 @author: HNS
 """
 
-print("Testing 2")
+# Load Data Function by Ali
 
 
-## Cleaning Data Function
+# Clean Data Function by Usman------------------------------------------------------------------------------------------------------------------------
 
 def clean_data(merged_df):
     
@@ -60,3 +60,25 @@ def clean_data(merged_df):
     merged_df.dropna(inplace=True)
     
     return merged_df
+
+
+# Statistical Anaylysis by Faraz ------------------------------------------------------------------------------------------------------------------------
+
+# KPIs by Hammad ------------------------------------------------------------------------------------------------------------------------
+ 
+# Visualizations by Hassan ------------------------------------------------------------------------------------------------------------------------
+
+# Program Execution ------------------------------------------------------------------------------------------------------------------------
+
+folder_path = input("Enter Folder Path")
+df = load_data(folder_path)
+df = clean_data(df)
+statistical_analysis(df)
+kpis(df)
+visualization(df)
+
+print("End of Program")
+
+
+
+
