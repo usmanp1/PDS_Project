@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import seaborn as sb
 import numpy as np
 import pandas as pd
 import glob
@@ -95,7 +96,7 @@ def shapeDf(dataset):
     return dataset.shape
 
 shape = shapeDf(df)
-print(shape)
+# print(shape)
 
 
 # Description of Dataset
@@ -104,23 +105,23 @@ def describeDf(dataset):
     return dataset.describe()
 
 describe = describeDf(df)
-print(describe)
+# print(describe)
 
 
 
 def describeDf(dataset):
     return dataset.describe(include=['object'])
 
-describe = describeDf(df)
-print(describe)
+describe1 = describeDf(df)
+# print(describe1)
 
 
 
 def describeDf(dataset):
     return dataset.describe(include='all')
 
-describe = describeDf(df)
-print(describe)
+describe2 = describeDf(df)
+# print(describe2)
 
 
 
@@ -129,9 +130,8 @@ print(describe)
 def infoDf(dataset):
     return dataset.info()
 
-
 info = infoDf(df)
-print(info)
+# print(info)
 
 
 # Sum of Dataframe 
@@ -140,7 +140,7 @@ def sumDf(dataset):
     return dataset.sum()
 
 sum = sumDf(df)
-print(sum)
+# print(sum)
 
 
 # Standard Deviation of Dataframe 
@@ -149,7 +149,7 @@ def stdDf(dataset):
     return dataset.std()
 
 std_dev = stdDf(df)
-print(std_dev)
+# print(std_dev)
 
 
 # Median of Dataframe 
@@ -158,7 +158,7 @@ def medDf(dataset):
     return dataset.median()
 
 median = medDf(df)
-print(median)
+# print(median)
 
 
 
@@ -168,7 +168,7 @@ def modeDf(dataset):
     return dataset.mode()
 
 mode = modeDf(df)
-print(mode)
+# print(mode)
 
 
 # Min of Dataframe 
@@ -177,7 +177,7 @@ def minDf(dataset):
     return dataset.min()
 
 min = minDf(df)
-print(min)
+# print(min)
 
 
 # Max of Dataframe 
@@ -186,36 +186,31 @@ def maxDf(dataset):
     return dataset.max()
 
 max = maxDf(df)
-print(max)
+# print(max)
 
-
-
-# Mode of Dataframe 
-
-def modeDf(dataset):
-    return dataset.mode()
-
-mode = modeDf(df)
-print(mode)
-
-
-# Mode of Dataframe 
-
-def modeDf(dataset):
-    return dataset.mode()
-
-mode = modeDf(df)
-print(mode)
+def descriptive_analysis(dataset):
+    print(shape)
+    print(describe)
+    print(describe)
+    print(describe1)
+    print(describe2)
+    print(info)
+    print(sum)
+    print(std_dev)
+    print(median)
+    print(mode)
+    print(min)
+    print(max)
 
 
 
 
-##### Data Visualization 
+##### Data Visualization Analysis
 
 
 
-import matplotlib.pyplot as plt
-import seaborn as sb
+# import matplotlib.pyplot as plt  ##ALREADY IMPORTED WHILE UPLOADING DATA##
+# import seaborn as sb  ##ALREADY IMPORTED WHILE UPLOADING DATA##
 
 
 ## Product Rating Histogram
@@ -228,7 +223,7 @@ def ratings_histogram(data):
     plt.ylabel('Frequency')
     plt.show()
 
-ratings_histogram(df)
+# ratings_histogram(df)
 
 
 
@@ -242,7 +237,7 @@ def ratings_scatterplot_actual(data):
     plt.ylabel('Ratings')
     plt.show()
 
-ratings_scatterplot_actual(df)
+# ratings_scatterplot_actual(df)
 
 
 
@@ -256,7 +251,7 @@ def ratings_scatterplot_discount(data):
     plt.ylabel('Ratings')
     plt.show()
 
-ratings_scatterplot_discount(df)
+# ratings_scatterplot_discount(df)
 
 
 
@@ -269,7 +264,7 @@ def actualPrice_BySubCategory_boxplot(data):
     plt.ylabel('Actual Price')
     plt.show()
 
-actualPrice_BySubCategory_boxplot(df)
+# actualPrice_BySubCategory_boxplot(df)
 
 
 
@@ -282,7 +277,7 @@ def discountPrice_BySubCategory_boxplot(data):
     plt.ylabel('Discount Price')
     plt.show()
 
-discountPrice_BySubCategory_boxplot(df)
+# discountPrice_BySubCategory_boxplot(df)
 
 
 
@@ -295,7 +290,7 @@ def actualPrice_ByMainCategory_boxplot(data):
     plt.ylabel('Actual Price')
     plt.show()
 
-actualPrice_ByMainCategory_boxplot(df)
+# actualPrice_ByMainCategory_boxplot(df)
 
 
 
@@ -308,7 +303,17 @@ def discountPrice_ByMainCategory_boxplot(data):
     plt.ylabel('Discount Price')
     plt.show()
 
-discountPrice_ByMainCategory_boxplot(df)
+# discountPrice_ByMainCategory_boxplot(df)
+
+
+def graphical_analysis(dataset):
+    ratings_histogram(df)
+    ratings_scatterplot_actual(df)
+    ratings_scatterplot_discount(df)
+    actualPrice_BySubCategory_boxplot(df)
+    discountPrice_BySubCategory_boxplot(df)
+    actualPrice_ByMainCategory_boxplot(df)
+    discountPrice_ByMainCategory_boxplot(df)
 
 # KPIs by Hammad ------------------------------------------------------------------------------------------------------------------------
  
@@ -378,8 +383,10 @@ def visualizations(df):
 
 df = upload_files()
 df = clean_data(df)
-statistical_analysis(df)
-kpis(df)
+descriptive_analysis(df)
+graphical_analysis(df)
+# statistical_analysis(df)
+# kpis(df)
 visualizations(df)
 
 print("End of Program")
