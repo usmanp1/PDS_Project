@@ -6,7 +6,24 @@ Created on Sun May  7 12:59:47 2023
 """
 
 # Load Data Function by Ali
+import pandas as pd
+import glob
 
+def upload_files():
+    folder_path = input('Enter path to the folder where the files are located: ')
+    file_list = glob.glob(folder_path + "/*.csv")
+
+    data_frames = []
+
+    for filename in file_list:
+        df = pd.read_csv(filename, index_col=None, header=0)
+        data_frames.append(df)
+
+    combined_df = pd.concat(data_frames, axis=0, ignore_index=True)
+    
+    combined_df.drop_duplicates(inplace=True)
+    
+    return combined_df
 
 # Clean Data Function by Usman------------------------------------------------------------------------------------------------------------------------
 
@@ -64,7 +81,7 @@ def clean_data(merged_df):
 
 # Statistical Anaylysis by Faraz ------------------------------------------------------------------------------------------------------------------------
 
-import pandas as pd
+#import pandas as pd  ##ALREADY IMPORTED WHILE UPLOADING DATA##
 
 # Convert into float
 
