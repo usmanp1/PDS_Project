@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import seaborn as sb
 import numpy as np
 import pandas as pd
 import glob
@@ -96,7 +95,7 @@ def shapeDf(dataset):
     return dataset.shape
 
 shape = shapeDf(df)
-# print(shape)
+print(shape)
 
 
 # Description of Dataset
@@ -105,23 +104,23 @@ def describeDf(dataset):
     return dataset.describe()
 
 describe = describeDf(df)
-# print(describe)
+print(describe)
 
 
 
 def describeDf(dataset):
     return dataset.describe(include=['object'])
 
-describe1 = describeDf(df)
-# print(describe1)
+describe = describeDf(df)
+print(describe)
 
 
 
 def describeDf(dataset):
     return dataset.describe(include='all')
 
-describe2 = describeDf(df)
-# print(describe2)
+describe = describeDf(df)
+print(describe)
 
 
 
@@ -130,8 +129,9 @@ describe2 = describeDf(df)
 def infoDf(dataset):
     return dataset.info()
 
+
 info = infoDf(df)
-# print(info)
+print(info)
 
 
 # Sum of Dataframe 
@@ -140,7 +140,7 @@ def sumDf(dataset):
     return dataset.sum()
 
 sum = sumDf(df)
-# print(sum)
+print(sum)
 
 
 # Standard Deviation of Dataframe 
@@ -149,7 +149,7 @@ def stdDf(dataset):
     return dataset.std()
 
 std_dev = stdDf(df)
-# print(std_dev)
+print(std_dev)
 
 
 # Median of Dataframe 
@@ -158,7 +158,7 @@ def medDf(dataset):
     return dataset.median()
 
 median = medDf(df)
-# print(median)
+print(median)
 
 
 
@@ -168,7 +168,7 @@ def modeDf(dataset):
     return dataset.mode()
 
 mode = modeDf(df)
-# print(mode)
+print(mode)
 
 
 # Min of Dataframe 
@@ -177,7 +177,7 @@ def minDf(dataset):
     return dataset.min()
 
 min = minDf(df)
-# print(min)
+print(min)
 
 
 # Max of Dataframe 
@@ -186,31 +186,36 @@ def maxDf(dataset):
     return dataset.max()
 
 max = maxDf(df)
-# print(max)
-
-def descriptive_analysis(dataset):
-    print(shape)
-    print(describe)
-    print(describe)
-    print(describe1)
-    print(describe2)
-    print(info)
-    print(sum)
-    print(std_dev)
-    print(median)
-    print(mode)
-    print(min)
-    print(max)
+print(max)
 
 
 
+# Mode of Dataframe 
 
-##### Data Visualization Analysis
+def modeDf(dataset):
+    return dataset.mode()
+
+mode = modeDf(df)
+print(mode)
+
+
+# Mode of Dataframe 
+
+def modeDf(dataset):
+    return dataset.mode()
+
+mode = modeDf(df)
+print(mode)
 
 
 
-# import matplotlib.pyplot as plt  ##ALREADY IMPORTED WHILE UPLOADING DATA##
-# import seaborn as sb  ##ALREADY IMPORTED WHILE UPLOADING DATA##
+
+##### Data Visualization 
+
+
+
+import matplotlib.pyplot as plt
+import seaborn as sb
 
 
 ## Product Rating Histogram
@@ -223,7 +228,7 @@ def ratings_histogram(data):
     plt.ylabel('Frequency')
     plt.show()
 
-# ratings_histogram(df)
+ratings_histogram(df)
 
 
 
@@ -237,7 +242,7 @@ def ratings_scatterplot_actual(data):
     plt.ylabel('Ratings')
     plt.show()
 
-# ratings_scatterplot_actual(df)
+ratings_scatterplot_actual(df)
 
 
 
@@ -251,7 +256,7 @@ def ratings_scatterplot_discount(data):
     plt.ylabel('Ratings')
     plt.show()
 
-# ratings_scatterplot_discount(df)
+ratings_scatterplot_discount(df)
 
 
 
@@ -264,7 +269,7 @@ def actualPrice_BySubCategory_boxplot(data):
     plt.ylabel('Actual Price')
     plt.show()
 
-# actualPrice_BySubCategory_boxplot(df)
+actualPrice_BySubCategory_boxplot(df)
 
 
 
@@ -277,7 +282,7 @@ def discountPrice_BySubCategory_boxplot(data):
     plt.ylabel('Discount Price')
     plt.show()
 
-# discountPrice_BySubCategory_boxplot(df)
+discountPrice_BySubCategory_boxplot(df)
 
 
 
@@ -290,7 +295,7 @@ def actualPrice_ByMainCategory_boxplot(data):
     plt.ylabel('Actual Price')
     plt.show()
 
-# actualPrice_ByMainCategory_boxplot(df)
+actualPrice_ByMainCategory_boxplot(df)
 
 
 
@@ -303,20 +308,28 @@ def discountPrice_ByMainCategory_boxplot(data):
     plt.ylabel('Discount Price')
     plt.show()
 
-# discountPrice_ByMainCategory_boxplot(df)
-
-
-def graphical_analysis(dataset):
-    ratings_histogram(df)
-    ratings_scatterplot_actual(df)
-    ratings_scatterplot_discount(df)
-    actualPrice_BySubCategory_boxplot(df)
-    discountPrice_BySubCategory_boxplot(df)
-    actualPrice_ByMainCategory_boxplot(df)
-    discountPrice_ByMainCategory_boxplot(df)
+discountPrice_ByMainCategory_boxplot(df)
 
 # KPIs by Hammad ------------------------------------------------------------------------------------------------------------------------
- 
+
+counts = data.groupby(['main_category', 'sub_category'])['no_of_ratings'].count()
+max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].max()
+min_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].min()
+max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs)', 'actual_price (Rs)'].max()
+grouped_data = data.groupby(['main_category', 'sub_category'])
+
+# define a function to get the number of ratings for the highest and lowest priced products in each group
+def get_ratings(group):
+    # get the row with the highest actual price
+    max_price_row = group.loc[group['actual_price (Rs)'].idxmax()]
+    # get the row with the lowest actual price
+    min_price_row = group.loc[group['actual_price (Rs)'].idxmin()]
+    # return the number of ratings for both rows
+    return pd.Series({'max_price_ratings': max_price_row['no_of_ratings'], 'min_price_ratings': min_price_row['no_of_ratings']})
+
+# apply the get_ratings function to each group and concatenate the resulting dataframes
+ratings_df = grouped_data.apply(get_ratings).reset_index()
+
 # Visualizations by Hassan ------------------------------------------------------------------------------------------------------------------------
 
 def visualizations(df):
@@ -383,10 +396,8 @@ def visualizations(df):
 
 df = upload_files()
 df = clean_data(df)
-descriptive_analysis(df)
-graphical_analysis(df)
-# statistical_analysis(df)
-# kpis(df)
+statistical_analysis(df)
+kpis(df)
 visualizations(df)
 
 print("End of Program")
