@@ -374,9 +374,8 @@ def visualizations(df):
 
 df = upload_files()
 df = clean_data(df)
-# statistical_analysis(df)
 descriptive_analysis(df)
-# graphical_analysis(df)
+graphical_analysis(df)
 kpis(df)
 visualizations(df)
 
