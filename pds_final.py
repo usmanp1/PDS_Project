@@ -1,6 +1,5 @@
 import seaborn as sb
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import glob
 
@@ -87,7 +86,7 @@ def clean_data(merged_df):
 # df['actual_price'] = df['actual_price'].str.replace('₹', '').str.replace(',', '').astype(float)
 
 
-##### Descriptive Statistics
+##### Descriptive Statistics by Faraz
 
 def descriptive_analysis(df):
 
@@ -102,11 +101,11 @@ def descriptive_analysis(df):
     
     # Description of Dataset
     
-    def describeDf(dataset):
-        return dataset.describe()
+    # def describeDf(dataset):
+    #     return dataset.describe()
     
-    describe = describeDf(df)
-    # print(describe)
+    # describe = describeDf(df)
+    # # print(describe)
     
     
     
@@ -137,214 +136,178 @@ def descriptive_analysis(df):
     
     # Sum of Dataframe 
     
-    def sumDf(dataset):
-        return dataset.sum()
+    # def sumDf(dataset):
+    #     return dataset.sum()
     
-    sum = sumDf(df)
-    # print(sum)
-    
-    
-    # Standard Deviation of Dataframe 
-    
-    def stdDf(dataset):
-        return dataset.std()
-    
-    std_dev = stdDf(df)
-    # print(std_dev)
+    # sum = sumDf(df)
+    # # print(sum)
     
     
-    # Median of Dataframe 
+    # # Standard Deviation of Dataframe 
     
-    def medDf(dataset):
-        return dataset.median()
+    # def stdDf(dataset):
+    #     return dataset.std()
     
-    median = medDf(df)
-    # print(median)
-    
-    
-    
-    # Mode of Dataframe 
-    
-    def modeDf(dataset):
-        return dataset.mode()
-    
-    mode = modeDf(df)
-    # print(mode)
+    # std_dev = stdDf(df)
+    # # print(std_dev)
     
     
-    # Min of Dataframe 
+    # # Median of Dataframe 
     
-    def minDf(dataset):
-        return dataset.min()
+    # def medDf(dataset):
+    #     return dataset.median()
     
-    min = minDf(df)
-    # print(min)
+    # median = medDf(df)
+    # # print(median)
     
     
-    # Max of Dataframe 
     
-    def maxDf(dataset):
-        return dataset.max()
+    # # Mode of Dataframe 
     
-    max = maxDf(df)
-    # print(max)
+    # def modeDf(dataset):
+    #     return dataset.mode()
+    
+    # mode = modeDf(df)
+    # # print(mode)
+    
+    
+    # # Min of Dataframe 
+    
+    # def minDf(dataset):
+    #     return dataset.min()
+    
+    # min = minDf(df)
+    # # print(min)
+    
+    
+    # # Max of Dataframe 
+    
+    # def maxDf(dataset):
+    #     return dataset.max()
+    
+    # max = maxDf(df)
+    # # print(max)
     
     def call_descriptive(dataset):
         print(shape)
-        print(describe)
-        print(describe)
+        # print(describe)
+        # print(describe)
         print(describe1)
         print(describe2)
         print(info)
         print(sum)
-        print(std_dev)
-        print(median)
-        print(mode)
+        # print(std_dev)
+        # print(median)
+        # print(mode)
         print(min)
         print(max)
 
 
 
 
-##### Data Visualization Analysis
+##### Data Visualization Analysis by Faraz
 
 def graphical_analysis(df):
 
-# import matplotlib.pyplot as plt  ##ALREADY IMPORTED WHILE UPLOADING DATA##
-# import seaborn as sb  ##ALREADY IMPORTED WHILE UPLOADING DATA##
-
-
-    ## Product Rating Histogram
-    
-    
     def ratings_histogram(data):
-        sb.histplot(data=df, x='ratings', bins=5)
+        sb.histplot(data=data, x='ratings', bins=5)
         plt.title('Product Ratings Histogram')
         plt.xlabel('Ratings')
         plt.ylabel('Frequency')
         plt.show()
     
-    # ratings_histogram(df)
-    
-    
-    
-    # Relationship between actual price and ratings
-    
-    
     def ratings_scatterplot_actual(data):
-        sb.scatterplot(data=df, x='actual_price', y='ratings')
+        sb.scatterplot(data=data, x='actual_price', y='ratings')
         plt.title('Actual Price vs. Ratings')
         plt.xlabel('Actual Price')
         plt.ylabel('Ratings')
         plt.show()
     
-    # ratings_scatterplot_actual(df)
-    
-    
-    
-    # Relationship between discount price and ratings
-    
-    
     def ratings_scatterplot_discount(data):
-        sb.scatterplot(data=df, x='discount_price', y='ratings')
+        sb.scatterplot(data=data, x='discount_price', y='ratings')
         plt.title('Discount Price vs. Ratings')
         plt.xlabel('Discount Price')
         plt.ylabel('Ratings')
         plt.show()
     
-    # ratings_scatterplot_discount(df)
-    
-    
-    
-    # Box plot of actual price by sub category
-    
     def actualPrice_BySubCategory_boxplot(data):
-        sb.boxplot(data=df, x='sub_category', y='actual_price')
+        sb.boxplot(data=data, x='sub_category', y='actual_price')
         plt.title('Actual Price by Sub Category')
         plt.xlabel('Sub Category')
         plt.ylabel('Actual Price')
         plt.show()
     
-    # actualPrice_BySubCategory_boxplot(df)
-    
-    
-    
-    # Box plot of discount price by sub category
-    
     def discountPrice_BySubCategory_boxplot(data):
-        sb.boxplot(data=df, x='sub_category', y='discount_price')
+        sb.boxplot(data=data, x='sub_category', y='discount_price')
         plt.title('Discount Price by Sub Category')
         plt.xlabel('Sub Category')
         plt.ylabel('Discount Price')
         plt.show()
     
-    # discountPrice_BySubCategory_boxplot(df)
-    
-    
-    
-    # Box plot of actual price by main category
-    
     def actualPrice_ByMainCategory_boxplot(data):
-        sb.boxplot(data=df, x='main_category', y='actual_price')
+        sb.boxplot(data=data, x='main_category', y='actual_price')
         plt.title('Actual Price by Main Category')
         plt.xlabel('Main Category')
         plt.ylabel('Actual Price')
         plt.show()
     
-    # actualPrice_ByMainCategory_boxplot(df)
-    
-    
-    
-    # Box plot of discount price by main category
-    
     def discountPrice_ByMainCategory_boxplot(data):
-        sb.boxplot(data=df, x='main_category', y='discount_price')
+        sb.boxplot(data=data, x='main_category', y='discount_price')
         plt.title('Discount Price by Main Category')
         plt.xlabel('Main Category')
         plt.ylabel('Discount Price')
         plt.show()
     
-    # discountPrice_ByMainCategory_boxplot(df)
-    
-    
     def call_graphical(dataset):
-        ratings_histogram(df)
-        ratings_scatterplot_actual(df)
-        ratings_scatterplot_discount(df)
-        actualPrice_BySubCategory_boxplot(df)
-        discountPrice_BySubCategory_boxplot(df)
-        actualPrice_ByMainCategory_boxplot(df)
-        discountPrice_ByMainCategory_boxplot(df)
+        ratings_histogram(dataset)
+        ratings_scatterplot_actual(dataset)
+        ratings_scatterplot_discount(dataset)
+        actualPrice_BySubCategory_boxplot(dataset)
+        discountPrice_BySubCategory_boxplot(dataset)
+        actualPrice_ByMainCategory_boxplot(dataset)
+        discountPrice_ByMainCategory_boxplot(dataset)
+
+    # Call the function with your dataset (replace 'df' with your actual dataset variable)
+    call_graphical(df)
+
+
 
 # KPIs by Hammad ------------------------------------------------------------------------------------------------------------------------
 
-counts = data.groupby(['main_category', 'sub_category'])['no_of_ratings'].count()
-max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
-min_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].min()
-max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
-grouped_data = data.groupby(['main_category', 'sub_category'])
 
-# define a function to get the number of ratings for the highest and lowest priced products in each group
-def get_ratings(group):
-    # get the row with the highest actual price
-    max_price_row = group.loc[group['actual_price (Rs. )'].idxmax()]
-    # get the row with the lowest actual price
-    min_price_row = group.loc[group['actual_price (Rs. )'].idxmin()]
-    # return the number of ratings for both rows
-    return pd.Series({'max_price_ratings': max_price_row['no_of_ratings'], 'min_price_ratings': min_price_row['no_of_ratings']})
+def kpis(data):
+    
+    max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
+    min_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].min()
+    max_prices = data.groupby(['main_category', 'sub_category'])['discount_price (Rs. )', 'actual_price (Rs. )'].max()
+    grouped_data = data.groupby(['main_category', 'sub_category'])
+    
+    # define a function to get the number of ratings for the highest and lowest priced products in each group
+    def get_ratings(group):
+        # get the row with the highest actual price
+        max_price_row = group.loc[group['actual_price (Rs. )'].idxmax()]
+        # get the row with the lowest actual price
+        min_price_row = group.loc[group['actual_price (Rs. )'].idxmin()]
+        # return the number of ratings for both rows
+        return pd.Series({'max_price_ratings': max_price_row['no_of_ratings'], 'min_price_ratings': min_price_row['no_of_ratings']})
+    
+    def get_minratings(group):
+        # get the row with the highest actual price
+        max_disprice_row = group.loc[group['discount_price (Rs. )'].idxmax()]
+        # get the row with the lowest actual price
+        min_disprice_row = group.loc[group['discount_price (Rs. )'].idxmin()]
+        # return the number of ratings for both rows
+        return pd.Series({'max_disprice_ratings': max_disprice_row['no_of_ratings'], 'min_disprice_ratings': min_disprice_row['no_of_ratings']})
+    
+    # apply the get_ratings function to each group and concatenate the resulting dataframes
+    ratings_df = grouped_data.apply(get_ratings).reset_index()
+    minratings_df = grouped_data.apply(get_minratings).reset_index()
 
-def get_minratings(group):
-    # get the row with the highest actual price
-    max_disprice_row = group.loc[group['discount_price (Rs. )'].idxmax()]
-    # get the row with the lowest actual price
-    min_disprice_row = group.loc[group['discount_price (Rs. )'].idxmin()]
-    # return the number of ratings for both rows
-    return pd.Series({'max_disprice_ratings': max_disprice_row['no_of_ratings'], 'min_disprice_ratings': min_disprice_row['no_of_ratings']})
-
-# apply the get_ratings function to each group and concatenate the resulting dataframes
-ratings_df = grouped_data.apply(get_ratings).reset_index()
-minratings_df = grouped_data.apply(get_minratings).reset_index()
-
+    print('Max Prices are: ', max_prices)
+    print('Min Prices are: ', min_prices)
+    print('Rating are: ', ratings_df)
+    print('Min Ratings are: ', minratings_df)
+    
 # Visualizations by Hassan ------------------------------------------------------------------------------------------------------------------------
 
 def visualizations(df):
@@ -413,7 +376,7 @@ df = upload_files()
 df = clean_data(df)
 # statistical_analysis(df)
 descriptive_analysis(df)
-graphical_analysis(df)
+# graphical_analysis(df)
 kpis(df)
 visualizations(df)
 
